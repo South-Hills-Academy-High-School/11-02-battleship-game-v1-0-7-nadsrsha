@@ -97,15 +97,21 @@ function isPlayerXWinner (enemyBoats: Sprite[][], hitOrMissPX: Sprite[]) {
     return killCount
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (isAttackingTwice(hitOrMissP1)) {
-    	
-    } else if (moveBoatFlag == 3) {
+    if (moveBoatFlag == 3) {
         if (currentPlayer == "Player1") {
-            isHitOrMiss(boatSpriteArrayP2, hitOrMissP1)
-            switchPlayer()
+            if (isAttackingTwice(hitOrMissP1)) {
+                game.splash("thats the wrong square!")
+            } else {
+                isHitOrMiss(boatSpriteArrayP2, hitOrMissP1)
+                switchPlayer()
+            }
         } else {
-            isHitOrMiss(boatSpriteArrayP1, hitOrMissP2)
-            switchPlayer()
+            if (isAttackingTwice(hitOrMissP2)) {
+                game.splash("thats the wrong square!")
+            } else {
+                isHitOrMiss(boatSpriteArrayP1, hitOrMissP2)
+                switchPlayer()
+            }
         }
     } else {
         currentBoat += 1
